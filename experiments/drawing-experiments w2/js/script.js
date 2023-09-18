@@ -1,10 +1,9 @@
-/**
- * Title of Project
- * Author Name
- * 
- * This is a template. You must fill in the title, author, 
- * and this description to match your project!
- */
+/***********************
+Exercise 1: I like to move it!
+Taylor McArthur
+
+Draws a face on the canvas
+***********************/
 
 "use strict";
 
@@ -15,18 +14,13 @@ function preload() {
 
 }
 
-
-/**
- * Description of setup
-*/
-function setup() {
+function setup(){
+  createCanvas(windowWidth,windowHeight);
 
 }
-
-
-/**
- * Description of draw()
-*/
-function draw() {
-
+//Draw mouse shape
+function draw(){
+  background(255,0,0);
+  rectMode(CENTER);
+  rect(250,250, 100,100);
 }
