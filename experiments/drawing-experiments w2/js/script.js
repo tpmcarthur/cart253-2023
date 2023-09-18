@@ -2,7 +2,7 @@
 Exercise 1: I like to move it!
 Taylor McArthur
 
-Draws a face on the canvas
+Learning about built in variables and testing
 ***********************/
 
 "use strict";
