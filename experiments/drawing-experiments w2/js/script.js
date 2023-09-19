@@ -2,7 +2,7 @@
 Exercise 1: I like to move it!
 Taylor McArthur
 
-Debugging variables
+Introducing random numbers
 ***********************/
 
 "use strict";
@@ -18,11 +18,12 @@ function preload() {
 let backgroundShade = 0;
 
 let circle = {
-  x: 0,
+  x: 250,
   y: 250,
-  size: 200,
-  speed: 2
-}; 
+  size: 100,
+  speed: 2,
+  fill:0
+}
 
 function setup(){
   createCanvas(500,500);
@@ -31,8 +32,17 @@ function setup(){
 //Draw mouse shape
 function draw(){
   background(backgroundShade);
+
   circle.x +=circle.speed;
+  circle.speed = random(-5,5);
+  
+  circle.y = random (0,height);
+  circle.size = random(10,100);
+
+  circle.fill = random(0,255);
+  fill(circle.fill);
   ellipse(circle.x,circle.y,circle.size);
+
 
   // console.log(`circle.x: ${circle.x}, circle.y: ${circle.y}, circle.size: ${circle.size},`);
 }
