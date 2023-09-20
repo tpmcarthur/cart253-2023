@@ -1,3 +1,3 @@
-# Template p5 project
+# Activity 03 | I like to move it
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+Putting to use all the variables we have learned over the past couple of weeks to create interactive objects. Need more time to learn and understand how to use the variables properly.
