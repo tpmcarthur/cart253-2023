@@ -72,20 +72,20 @@ function draw() {
     fill(135,206,235);
     rect(50, 50, 400, 400, 5);
 
-    //first circle
+    //first circle, constraining
     circle1.y = circle1.y + circle1.speed;
     circle1.y = constrain(circle1.y,0,445);
 
     circle1.size = circle1.size + circle1.growthRate;
     circle1.size = constrain(circle1.size,50,width);
 
-    // odd number circle increase
-    circle1.size = map (mouseY,height,0,50,60)
+    // odd number circle increase, mapping 
+    circle1.size = map (mouseY, 0, height,40,60)
 
     fill(255,255,0); //can't figure out or remember how to change inside variables
     ellipse(circle1.x,circle1.y,circle1.size);
 
-    //second circle
+    //second circle, constraining
     circle2.y = circle2.y + circle2.speed;
     circle2.y = constrain(circle2.y,0,315);
 
@@ -95,20 +95,20 @@ function draw() {
     fill(255,255,0);
     ellipse(circle2.x,circle2.y,circle2.size);
 
-    //third circle
+    //third circle, constraining
     circle3.y = circle3.y + circle3.speed;
     circle3.y = constrain(circle3.y,0,200);
 
     circle3.size = circle3.size + circle3.growthRate;
     circle3.size = constrain(circle3.size,50,width);
 
-    // odd number circle increase
-    circle3.size = map (mouseY,height,0,50,60)
+    // odd number circle increase, mapping
+    circle3.size = map (mouseY,0, height,40,60)
 
     fill(255,255,0);
     ellipse(circle3.x,circle3.y,circle3.size);
 
-    //fourth circle
+    //fourth circle, constraining
     circle4.y = circle4.y + circle4.speed;
     circle4.y = constrain(circle4.y,0,55);
 
