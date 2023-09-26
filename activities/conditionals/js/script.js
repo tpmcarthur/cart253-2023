@@ -8,6 +8,8 @@
 
 "use strict";
 
+let angle = 0;
+
 /**
  * Description of preload
 */
@@ -26,11 +28,16 @@ function setup() {
  * Description of draw()
 */
 function draw() {
+    background(0);
+
     push();
     rectMode(CENTER);
-    rotate(PI/4); // Rotate the following shape by PI/4 radians (45 degrees)
+    translate(250,250);//Translate to the rectangles drawing position
+    rotate(angle);//rotate the following shape by 45 degrees
     fill(255,0,0);
-    rect(250,250,100,100);
+    rect(0,0,100,100);//Draw the rectangle at 0,0 because we translated the origin
     pop();
+
+    angle = angle + 0.5;
   }
 
