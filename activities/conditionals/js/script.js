@@ -26,16 +26,14 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    push();
+    //Red rectangle, no translation
+    translate(100,100); //Move the origin 100 pixels right and 100 pixels down
     fill(255,0,0);
-    stroke(0,255,255);
-    strokeWeight(10);
-    rect(100,100,100,100);
-    pop();
+    rect(0,0,100,100);
 
-    push();
+    //Blue rectangle, translated
+    translate(100,100); //Move the origin 100 pixels more to the right, 100 more pixels down
     fill(0,0,255);
-    rect(300, 100, 100, 100);
-    pop();
+    rect(0, 0, 100, 100);
   }
 
