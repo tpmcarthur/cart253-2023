@@ -14,7 +14,7 @@ let circle = {
     y: 250,
     size: 100,
     vx: 1, //x velocity
-    vy: 0 //y velocity
+    vy: -1 //y velocity
 }
 
 /**
@@ -38,7 +38,7 @@ function draw() {
     background(backgroundShade);
 
     circle.x = circle.x + circle.vx;
-    circle.x = circle.x + circle.vy;
+    circle.y = circle.y + circle.vy;
 
     ellipse(circle.x,circle.y,circle.size);
 
