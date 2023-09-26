@@ -26,14 +26,18 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    //Red rectangle, no translation
+    //Red rectangle
+    push(); //save defaults for ex the origin is at the top left 
     translate(100,100); //Move the origin 100 pixels right and 100 pixels down
     fill(255,0,0);
     rect(0,0,100,100);
+    pop();//restore the defaults, the origin goes back to the top left
 
-    //Blue rectangle, translated
-    translate(100,100); //Move the origin 100 pixels more to the right, 100 more pixels down
+    //Blue rectangle
+    push(); //save the defaults like the origin is at the top left
+    translate(100,200); //Move the origin 100 pixels to the right, 200 pixels down
     fill(0,0,255);
     rect(0, 0, 100, 100);
+    pop(); // restore the defaults, the origin goes back to the top left
   }
 
