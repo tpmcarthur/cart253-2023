@@ -1,5 +1,5 @@
 /**
- * Conditionals
+ * More Conditionals 4.2
  * Taylor McArthur
  * 
  *  
@@ -12,7 +12,7 @@ let circle = {
     x:0,
     y:250,
     size: 100,
-    speed: 5
+    speed: 2
 }
 
 /**
@@ -37,24 +37,14 @@ function draw() {
 
     circle.x = circle.x + circle.speed;
 
-    if (circle.x > width){
-        circle.speed = -circle.speed;
-    }
+    fill(255,255,255);
 
-    if (circle.x <0){
-        circle.speed = -circle.speed;
+    if (circle.x > width/3){
+        if(circle.x <2 * width/3){
+            fill(255,0,0);
+        }
     }
-
-    //Mouse color red
-    if (mouseY < height/2){
-        fill(255,0,0);
-    }
-
-    //Mouse color blue
-    if (mouseY > height/2){
-        fill(0,0,255);
-    }
-
+    
     ellipse(circle.x,circle.y,circle.size);
 }
 
