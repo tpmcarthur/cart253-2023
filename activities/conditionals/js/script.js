@@ -14,6 +14,17 @@ let circle = {
     size: 100
 }
 
+let square = {
+    x: 400,
+    y: 100,
+    size: 100,
+    fill: {
+        r: 255,
+        g: 99,
+        b: 71
+    }
+};
+
 /**
  * Description of preload
 */
@@ -35,13 +46,16 @@ function setup() {
 function draw() {
    background(0);
 
-   ellipse(circle.x,circle.y,circle.size);
+//    ellipse(circle.x,circle.y,circle.size);
+
+   rectMode(CENTER);
+   noStroke();
+   fill(square.fill.r,square.fill.g,square.fill.b);
+   rect(square.x,square.y,square.size);
 }
 
-//circle goes where mouse is pressed
 function mousePressed(){
-    circle.x = mouseX;
-    circle.y = mouseY;
-
+    square.x = mouseX;
+    square.y = mouseY;
 }
 
