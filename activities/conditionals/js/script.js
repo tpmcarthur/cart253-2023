@@ -26,12 +26,16 @@ function setup() {
  * Description of draw()
 */
 function draw() {
+    push();
     fill(255,0,0);
     stroke(0,255,255);
     strokeWeight(10);
     rect(100,100,100,100);
+    pop();
 
+    push();
     fill(0,0,255);
-    rect(300,100,100,100)
-    
+    rect(300, 100, 100, 100);
+    pop();
   }
+
