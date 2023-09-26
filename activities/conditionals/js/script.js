@@ -8,6 +8,17 @@
 
 "use strict";
 
+let rectangle = {
+    x: 0,
+    y: 250,
+    size: 100,
+    vx: 0,
+    vy: 0,
+    speed:2,
+    scale: 1,
+    angle: 0
+}
+
 /**
  * Description of preload
 */
@@ -19,7 +30,8 @@ function preload() {
  * Description of setup
 */
 function setup() {
- createCanvas(500,500);   
+ createCanvas(500,500); 
+ rectangle.vx = rectangle.speed;  
 }
 
 /**
@@ -28,12 +40,21 @@ function setup() {
 function draw() {
     background(0);
 
+    //Move the rectangle according to it's velocity 
+    rectangle.x = rectangle.x + rectangle.vx;
+    rectangle.y = rectangle.y + rectangle.vy;
+
+    //Increase the rectangle's scale and angle
+    rectangle.scale = rectangle.scale + 0.01;
+    rectangle.angle = rectangle.angle + 0.05;
+
+    //Display the rectangle
     push();
-    rectMode(CENTER);
-    translate(250,250);//Translate to the rectangles drawing position
-    scale(2);//double the size of our rectangle
-    fill(255,0,0);
-    rect(0,0,100,100);//Draw the rectangle at 0,0 because we translated the origin
+    rectMode(CENTER); //centered
+    translate(rectangle.x,rectangle.y);//Translate to the rectangleposition
+    scale(rectangle.scale); //apply scale
+    rotate(rectangle.angle); //Apply rotation
+    rect(0,0,rectangle.size,rectangle.size);//draw rectangle at 0,0 because of translate()
     pop();
   }
 
