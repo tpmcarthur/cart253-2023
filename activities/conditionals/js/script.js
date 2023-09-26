@@ -8,8 +8,6 @@
 
 "use strict";
 
-let angle = 0;
-
 /**
  * Description of preload
 */
@@ -33,11 +31,9 @@ function draw() {
     push();
     rectMode(CENTER);
     translate(250,250);//Translate to the rectangles drawing position
-    rotate(angle);//rotate the following shape by 45 degrees
+    scale(2);//double the size of our rectangle
     fill(255,0,0);
     rect(0,0,100,100);//Draw the rectangle at 0,0 because we translated the origin
     pop();
-
-    angle = angle + 0.5;
   }
 
