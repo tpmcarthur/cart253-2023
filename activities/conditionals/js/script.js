@@ -1,19 +1,13 @@
 /**
- * More Conditionals 4.2
+ * Booleans 4.3
  * Taylor McArthur
  * 
  *  
- * Learning conditionals
+ * Learning Booleans
  */
 
 "use strict";
-let backgroundShade = 0;
-let circle = {
-    x:0,
-    y:250,
-    size: 100,
-    speed: 2
-}
+
 
 /**
  * Description of preload
@@ -26,23 +20,19 @@ function preload() {
  * Description of setup
 */
 function setup() {
-    createCanvas(500,500);
+ createCanvas(500,500);   
 }
 
 /**
  * Description of draw()
 */
 function draw() {
-    background(backgroundShade);
+ if (keyIsPressed == true){
+    background(255);
+ }
 
-    circle.x = circle.x + circle.speed;
-
-    fill(255,255,255);
-
-    if (!(circle.x < width/3)){
-        fill(255,0,0);
-    }
-
-    ellipse(circle.x,circle.y,circle.size);
+ else{
+    background(0);
+ }
 }
 
