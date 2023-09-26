@@ -13,7 +13,8 @@ let circle = {
     x: 0,
     y: 250,
     size: 100,
-    speed: 1
+    vx: 1, //x velocity
+    vy: 0 //y velocity
 }
 
 /**
@@ -28,7 +29,6 @@ function preload() {
 */
 function setup() {
  createCanvas(500,500);   
-
 }
 
 /**
@@ -37,7 +37,9 @@ function setup() {
 function draw() {
     background(backgroundShade);
 
-    circle.x = circle.x + circle.speed;
+    circle.x = circle.x + circle.vx;
+    circle.x = circle.x + circle.vy;
+
     ellipse(circle.x,circle.y,circle.size);
 
   }
