@@ -1,3 +1,3 @@
 # Template p5 project
 
-This is the README file for the entire project. For more official projects you should write information here about the nature of the project, your name, any special explanations of how the project works, etc.
+Complete the 4th activity learning everything in 4.1 to 4.8
