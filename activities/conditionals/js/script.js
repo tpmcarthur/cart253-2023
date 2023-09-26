@@ -35,6 +35,10 @@ function setup() {
 function draw() {
    background(0);
 
+   //circle follows mouse
+   circle.x = mouseX;
+   circle.y = mouseY;
+
    ellipse(circle.x,circle.y,circle.size);
 }
 
