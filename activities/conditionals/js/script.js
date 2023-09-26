@@ -16,6 +16,8 @@ function preload() {
 
 }
 
+let displayCircle = false;
+
 /**
  * Description of setup
 */
@@ -27,12 +29,15 @@ function setup() {
  * Description of draw()
 */
 function draw() {
- if (keyIsPressed == true){
-    background(255);
- }
 
- else{
     background(0);
- }
+
+    if(mouseIsPressed){
+        displayCircle = true;
+    }
+
+    if(displayCircle){
+        ellipse(250,250,100,100);
+    }
 }
 
