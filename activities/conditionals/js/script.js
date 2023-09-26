@@ -11,19 +11,9 @@
 let circle = {
     x: 250,
     y: 250,
-    size: 100
-}
-
-let square = {
-    x: 400,
-    y: 100,
     size: 100,
-    fill: {
-        r: 255,
-        g: 99,
-        b: 71
-    }
-};
+    fill: 0
+}
 
 /**
  * Description of preload
@@ -44,18 +34,15 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-   background(0);
+   background(127);
 
-//    ellipse(circle.x,circle.y,circle.size);
+   fill(circle.fill);
+   ellipse(circle.x,circle.y,circle.size);
 
-   rectMode(CENTER);
-   noStroke();
-   fill(square.fill.r,square.fill.g,square.fill.b);
-   rect(square.x,square.y,square.size);
 }
 
 function mousePressed(){
-    square.x = mouseX;
-    square.y = mouseY;
+    circle.x = mouseX;
+    circle.y = mouseY;
 }
 
