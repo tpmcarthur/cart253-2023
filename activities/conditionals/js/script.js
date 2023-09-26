@@ -14,7 +14,8 @@ let circle = {
     y: 250,
     size: 100,
     vx: 0, //x velocity
-    vy: 0 //y velocity
+    vy: 0, //y velocity
+    speed: 1 // circle knows how fast it can move
 }
 
 /**
@@ -40,24 +41,24 @@ function draw() {
     //If mouse x position is greater than the circle x position, it must be to the right of the circle
     if (mouseX > circle.x){
         //so set the circle's velocity to a positive number to move it to the right 
-        circle.vx = 1;
+        circle.vx = circle.speed;
     }
 
     //or if the mouse x position is less than the circle x position, it must be to the left of the circle
     else if (mouseX < circle.x){
         //So set the circle's x velocity to a negative number to move it to the left 
-        circle.vy = -1;
+        circle.vy = -circle.speed;
     }
     //If the mouse position is greater than the circle y position, it must be below the circle
     if (mouseY > circle.y){
         //so set the circle's x velocity to a positive number to move it down
-        circle.vy = 1;
+        circle.vy = circle.speed;
     }
 
     //Or if the mouse y position is less than the circle y position, it must be above the circle
     else if(mouseY < circle.y){
         //so set the circle's x velocity to a negative number to move it up
-        circle.vy = -1;
+        circle.vy = -circle.speed;
     }
 
     //then we actually apply these changes to vx and vy to the circles position
