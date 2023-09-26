@@ -26,18 +26,11 @@ function setup() {
  * Description of draw()
 */
 function draw() {
-    //Red rectangle
-    push(); //save defaults for ex the origin is at the top left 
-    translate(100,100); //Move the origin 100 pixels right and 100 pixels down
+    push();
+    rectMode(CENTER);
+    rotate(PI/4); // Rotate the following shape by PI/4 radians (45 degrees)
     fill(255,0,0);
-    rect(0,0,100,100);
-    pop();//restore the defaults, the origin goes back to the top left
-
-    //Blue rectangle
-    push(); //save the defaults like the origin is at the top left
-    translate(100,200); //Move the origin 100 pixels to the right, 200 pixels down
-    fill(0,0,255);
-    rect(0, 0, 100, 100);
-    pop(); // restore the defaults, the origin goes back to the top left
+    rect(250,250,100,100);
+    pop();
   }
 
