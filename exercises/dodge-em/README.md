@@ -1,3 +1,3 @@
-# Template p5 project
+# Exercise: Dodge-em
 
-Complete the 4th activity learning everything in 4.1 to 4.8
+Complete the Exercise: Dodge-em 

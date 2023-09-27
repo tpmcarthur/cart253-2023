@@ -1,8 +1,8 @@
 /**
- * dodge-em
+ * dodge-em exercise
  * Taylor McArthur
  * 
- * Exercise, dodge em, black hole 
+ * Exercise, dodge em, black hole chasing a star
  */
 
 "use strict";
@@ -11,7 +11,7 @@
 let blackhole = {
     x: 0,
     y: 250,
-    size: 100,
+    size: 500,
     // vx: 0, //moves with mouse
     // vy: 0, //moves with mouse
     speed: 5,
@@ -89,7 +89,7 @@ function draw() {
 
     // when going back to left side reduce size, stop at 100
     else if(blackhole.size = blackhole.size -1)
-        blackhole.size = constrain(blackhole.size,100,width);
+        blackhole.size = constrain(blackhole.size,500,width);
 
     //Mouse POS greater than blackhole y pos, move below 
     if (mouseY > blackhole.y){
@@ -120,8 +120,10 @@ function draw() {
     //display blackhole
     fill(blackhole.fill);
     image(blackhole.image,blackhole.x,blackhole.y,blackhole.size,blackhole.size);
+    rotate(blackhole.angle); // Apply rotation
 
     //display player
     fill(player.fill);
     image(player.image,player.x,player.y,player.size, player.size);
+    
 }
