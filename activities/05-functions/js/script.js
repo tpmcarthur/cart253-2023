@@ -19,21 +19,21 @@ function setup() {
 
 }
 
-//Draw function calls from three others below
 function draw() {
     background(0);
 
-    paralells(100,100);
+    paralells(100,100,5,15,50,6);
+    paralells(200,300,20,20,10,15 );
    
 }
 
-function paralells(x,y){
-    for(let i = 0; i < 20; i++){
+function paralells(x,y,numLines,lineWidth,lineHeight,lineSpacing){
+    for(let i = 0; i < numLines; i++){
         noStroke();
         fill(255);
         rectMode(CENTER);
-        rect(x,y,2,50);
-        x = x + 5;
+        rect(x,y,2,lineWidth,lineHeight);
+        x = x + lineSpacing;
     }
 
 }
