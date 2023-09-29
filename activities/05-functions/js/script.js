@@ -5,9 +5,10 @@
  * text 5.4
  */
 
-let hamlet = "To be or not to be"; // string of text
-let hamlet = 'That is the question'; //another way to write it out
-let hamlet3 = `Whether 'tis nobler in the mind...`; // all do the same, just different ways to indicate a string is being written/stored
+let name = "Hamlet";
+let title = "Prince";
+let country = "Denmark";
+let string = `Hi, my name is ${name}}, ${title} of ${country}!`; // backtick is the best way for template strings
 
 "use strict";
 
