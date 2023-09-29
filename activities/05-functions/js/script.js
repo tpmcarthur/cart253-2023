@@ -23,18 +23,18 @@ function setup() {
 function draw() {
     background(0);
 
-    let x = 50;
-    let y = 250;
-    //counting variable 20x
+    paralells(100,100);
+   
+}
+
+function paralells(x,y){
     for(let i = 0; i < 20; i++){
-      noStroke();  
-      fill(255);
-      rectMode(CENTER);
-      rect(x,y,2,50);
-      x = x + 5;
-
+        noStroke();
+        fill(255);
+        rectMode(CENTER);
+        rect(x,y,2,50);
+        x = x + 5;
     }
-
 
 }
 
