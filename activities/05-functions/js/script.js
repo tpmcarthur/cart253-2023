@@ -1,8 +1,8 @@
 /**
- * Functions with return values
+ * text
  * Taylor McArthur
  * 
- * Learning functions with return values 5.3
+ * text 5.4
  */
 
 "use strict";
@@ -21,13 +21,5 @@ function setup() {
 
 function draw() {
     background(0);
-
-    let x = random(0,width);
-    let y = random(0,height);
-
-    ellipse(x,y,100);
-
-   
 }
-
 
