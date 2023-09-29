@@ -22,6 +22,11 @@ function setup() {
 function draw() {
     background(0);
 
+    let x = random(0,width);
+    let y = random(0,height);
+
+    ellipse(x,y,100);
+
    
 }
 
