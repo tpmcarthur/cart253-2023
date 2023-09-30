@@ -5,11 +5,6 @@
  * text 5.4
  */
 
-let name = "Hamlet";
-let title = "Prince";
-let country = "Denmark";
-let string = `Hi, my name is ${name}}, ${title} of ${country}!`; // backtick is the best way for template strings
-
 "use strict";
 
 //Preload 
@@ -26,5 +21,15 @@ function setup() {
 
 function draw() {
     background(0);
+
+    textAlign(CENTER,CENTER);
+    textSize(64);
+    textStyle(BOLD);
+
+    fill(200,50,200);
+    stroke(0,255,248);
+    strokeWeight(3);
+
+    text(`JOY DIVISION`,250,250);
 }
 
