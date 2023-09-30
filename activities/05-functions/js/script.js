@@ -1,22 +1,21 @@
 /**
- * text
+ * Learning States
  * Taylor McArthur
  * 
- * text 5.4
+ * States 5.5
  */
 
 "use strict";
 
-
-let hello = {
-    string: `Hello World`,
-    x: 250,
+let circle = {
+    x: 0,
     y: 250,
-    vx: 5,
-    vy: 1,
-    size: 64
-
+    size: 100,
+    vx: 0,
+    vy: 0,
+    speed: 2
 };
+
 
 //Preload 
 function preload() {
@@ -27,6 +26,7 @@ function preload() {
 //Set up
 function setup() {
     createCanvas(500,500);
+    circle.vx = circle.speed;
 
 }
 
@@ -35,19 +35,11 @@ function setup() {
 function draw() {
     background(0);
 
-    hello.x = hello.x + hello.vx;
-    hello.y = hello.y + hello.vy;
+    circle.x = circle.x + circle.vx;
+    circle.y = circle.y + circle.vy;
 
-    hello.size = hello.size + 1;
+    ellipse(circle.x,circle.y,circle.size);
 
-    textAlign(CENTER,CENTER);
-    textSize(hello.size);
-    textStyle(BOLD);
-
-    fill(200,50,200);
-    stroke(0,255,248);
-    strokeWeight(3);
-
-    text(hello.string,hello.x,hello.y);
+   
 }
 
