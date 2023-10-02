@@ -25,6 +25,8 @@ let lover2 = {
     speed: 3
 }
 
+let state = `title`; //Can be: title, simulation, love, sadness
+
 
 /**
  * Description of preload
@@ -40,6 +42,10 @@ function preload() {
 function setup() {
     createCanvas(windowWidth,windowHeight);
 
+    setUpLovers();
+}
+
+function setUpLovers(){
     //Position circles separated from one another
     lover1.x = width / 3;
     lover2.x = 2 * width / 3;
@@ -58,10 +64,57 @@ function setup() {
 function draw() {
     background(0);
 
+    if(state === `title`){
+        title();
+    }
+
+    else if (state === `simulation`) {
+        simulation();
+    }
+
+    else if (state === `love`){
+        love();
+
+    }
+
+    else if (state === `sadness`){
+        sadness();
+    }
+
+}
+
+function title(){
+    push();
+    textSize(64);
+    fill(200,100,100);
+    textAlign(CENTER,CENTER);
+    text(`LOVE?`,width/2,height/2)
+    pop();
+}
+
+function simulation(){
     move();
     checkOffScreen();
     checkOverlap();
     display();
+}
+
+function love(){
+    push();
+    textSize(64);
+    fill(255,150,150);
+    textAlign(CENTER,CENTER);
+    text(`LOVE!`,width/2,height/2)
+    pop();
+}
+
+function sadness(){
+    push();
+    textSize(64);
+    fill(150,150,255);
+    textAlign(CENTER,CENTER);
+    text(`What is love? :(`,width/2,height/2)
+    pop();
 }
 
 function move(){
@@ -75,10 +128,21 @@ function move(){
 
 function checkOffScreen(){
     //Check if the lovers have gone off screen
-    if (lover1.x < 0 || lover1.x > width || lover1.y < 0 || lover1.y > height || lover2.x < 0 || lover2.x > width || lover2.y < 0 || lover2.y > height){
+    if (isOffScreen(lover1) || isOffScreen(lover2)){
         //sad ending 
-
+        state = `sadness`;
     }
+}
+
+function isOffScreen(lover){
+    if (lover.x < 0 || lover.x > width || lover.y < 0 || lover.y > height){
+        return true;
+    }
+
+    else{
+        return false;
+    }
+
 }
 
 function checkOverlap(){
@@ -86,6 +150,7 @@ function checkOverlap(){
     let d = dist(lover1.x,lover1.y,lover2.x,lover2.y);
     if (d < lover1.size/2 + lover2.size/2){
         //Happily ever after
+        state = `love`;
     }
 }
 
@@ -93,4 +158,10 @@ function display(){
     //Display the lovers
     ellipse(lover1.x,lover1.y,lover1.size);
     ellipse(lover2.x,lover2.y,lover2.size);
+}
+
+function mousePressed(){
+    if (state ===  `title`){
+        state = `simulation`;
+    }
 }
