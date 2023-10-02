@@ -31,17 +31,16 @@ function draw() {
 
 //Display/change colour when key is pressed
 function keyPressed(){
-   if (key === `a`){
-    bg = 0;
-   }
+    if (keyCode === UP_ARROW){
+        bg = bg + 10;
+        bg = constrain(bg,0,255);
+    }
 
-   else if (key === `b`){
-    bg = 127;
-   }
-
-   else if (key === `c`){
-    bg = 255;
-   }
+    //down key
+    else if (keyCode === DOWN_ARROW){
+        bg = bg - 10;
+        bg = constrain(bg,0,255);
+    }
 
 }
 
