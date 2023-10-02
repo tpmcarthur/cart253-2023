@@ -6,3 +6,4 @@ Learning fuctions with return values 5.3
 Learning text 5.4
 Learning states 5.5
 Learning keyboard input 5.6
+Learning automated movement 5.7
