@@ -78,11 +78,11 @@ function draw() {
 
     //Or if mouse POS X is less than blackhole X pos, move to left
     else if (mouseX < blackhole.x){
-        //set velocity of covid 19 to neg num, move left 
+        //set velocity of blackhole to neg num, move left 
         blackhole.vx = -1;
     }
 
-    //Covid 19 reaching right half of screen, size increases
+    //blackhole reaching right half of screen, size increases
     if(blackhole.x > width/2){
         blackhole.size = blackhole.size + 1;
     }
@@ -120,7 +120,6 @@ function draw() {
     //display blackhole
     fill(blackhole.fill);
     image(blackhole.image,blackhole.x,blackhole.y,blackhole.size,blackhole.size);
-    rotate(blackhole.angle); // Apply rotation
 
     //display player
     fill(player.fill);
