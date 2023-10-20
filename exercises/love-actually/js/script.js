@@ -202,12 +202,10 @@ function move(){
 
 //Check if the lovers have gone off screen
 function checkOffScreen(){
-    
     if (isOffScreen(player) || isOffScreen(chaser)){
         //sad ending 
         state = `sadness`;
-    }
-        
+    }   
 }
 
 function isOffScreen(lover){
