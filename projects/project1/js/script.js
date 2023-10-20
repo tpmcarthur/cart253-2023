@@ -87,6 +87,7 @@ let io = {
 
 let state = `title`; // The landing or loading page 
 
+
 //Description of preload
 function preload() {
 }
@@ -170,9 +171,11 @@ function title(){
     textAlign(CENTER,CENTER);
     text(`Explore the moons of Jupiter`, width/2,height/2)
     pop();
+    drawStarrySky();
 }
 
 function simulation(){
+    drawStarrySky();
     checkOverlap();
     display();
     ourShip();
@@ -237,6 +240,15 @@ function moonIo(){
     ourShip();
     pop();
     checkOffScreen();
+}
+
+function drawStarrySky(){
+    fill(255); //white colour
+    for (let i = 0; i <100; i++){
+    let x = random(width);
+    let y = random(height);
+    ellipse(x, y, 2, 2)//draw the stars 
+    }
 }
 
 function checkOffScreen(){
