@@ -87,6 +87,7 @@ let io = {
 
 let state = `title`; // The landing or loading page 
 
+let visitedPlanets = []; // keeping track of all the planets visited
 
 //Description of preload
 function preload() {
@@ -103,7 +104,7 @@ function draw() {
     // noCursor();
     noStroke();
 
-    //textFont('font will go here);
+    textFont('Alata');
 
     if (state === `title`){
         title();
@@ -131,6 +132,10 @@ function draw() {
 
     else if (state === `moonIo`){
         moonIo();
+    }
+
+    else if (state ===`ending`){
+        ending();
     }
 
     //Horizontal Movement 
@@ -184,10 +189,18 @@ function simulation(){
 
 function planetJupiter(){
     push();
+    //text1
     textSize(40);
-    fill(255,255,255);
     textAlign(CENTER,CENTER);
-    text(`Jupiter`, 100, 450);
+    fill(255);
+    text(`Jupiter`, 145, 450);
+
+    //text2
+    textSize(20);
+    textAlign(CENTER,CENTER);
+    fill(255);
+    text(`Great Red Spot and has been going on for 30yrs`, 300, 500);
+
     //Shows spaceship in this state
     ourShip();
     pop();
@@ -196,10 +209,18 @@ function planetJupiter(){
 
 function moonCallisto(){
     push();
+    //text1
     textSize(40);
-    fill(255,255,255);
     textAlign(CENTER,CENTER);
-    text(`Callistio`, 100, 450);
+    fill(255);
+    text(`Callistio`, 155, 450);
+
+    //text2
+    textSize(20);
+    textAlign(CENTER,CENTER);
+    fill(255);
+    text(`the oldest and most cratered object in our solar system`, 330, 500);
+   
     //Shows spaceship in this state
     ourShip();
     pop();
@@ -208,10 +229,18 @@ function moonCallisto(){
 
 function moonGanymede(){
     push();
+    //Text 1
     textSize(40);
-    fill(255,255,255);
     textAlign(CENTER,CENTER);
-    text(`Ganymede`, 100, 450);
+    fill(255);
+    text(`Ganymede`, 180, 450);
+    
+    //Text2
+    textSize(20);
+    textAlign(CENTER,CENTER);
+    fill(255);
+    text(`the largest moon in our solar system, even larger than planet Mercury!`, 400, 500);
+   
     //Shows spaceship in this state
     ourShip();
     pop();
@@ -220,10 +249,18 @@ function moonGanymede(){
 
 function moonEuropa(){
     push();
+    //text1
     textSize(40);
-    fill(255,255,255);
     textAlign(CENTER,CENTER);
-    text(`Europa`, 100, 450);
+    fill(255);
+    text(`Europa`, 145, 450);
+
+    //text2
+    textSize(20);
+    textAlign(CENTER,CENTER);
+    fill(255);
+    text(`believed to have a subsurface ocean beneath the icy crust`, 343, 500);
+
     //Shows spaceship in this state
     ourShip();
     pop();
@@ -232,10 +269,18 @@ function moonEuropa(){
 
 function moonIo(){
     push();
+    //text1
     textSize(40);
-    fill(255,255,255);
     textAlign(CENTER,CENTER);
-    text(`Io`, 100, 450);
+    fill(255);
+    text(`Io`, 95, 450);
+
+    //text2
+    textSize(20);
+    textAlign(CENTER,CENTER);
+    fill(255);
+    text(`the most volcanically active body in our solar system`,320,500);
+
     //Shows spaceship in this state
     ourShip();
     pop();
@@ -244,7 +289,7 @@ function moonIo(){
 
 function drawStarrySky(){
     fill(255); //white colour
-    for (let i = 0; i <100; i++){
+    for (let i = 0; i <10; i++){
     let x = random(width);
     let y = random(height);
     ellipse(x, y, 2, 2)//draw the stars 
@@ -294,7 +339,45 @@ function checkOverlap(){
 
     else if (d5 <spaceship.size/2 + io.size/2){
         state = `moonIo`;
-    }    
+    } 
+    
+    //Keeping check of all the planets/moons that have been visited
+    if (d1 <spaceship.size /2 + jupiter.size/2 && !visitedPlanets.includes(`planetJupiter`)){
+        state = `planetJupiter`;
+        visitedPlanets.push(`planetJupiter`);
+    }
+
+    else if (d2 <spaceship.size /2 + callisto.size/2 && !visitedPlanets.includes(`moonCallisto`)){
+        state = `moonCallisto`;
+        visitedPlanets.push(`moonCallisto`);
+    }
+
+    else if (d3 <spaceship.size /2 + ganymede.size/2 && !visitedPlanets.includes(`moonGanymede`)){
+        state = `moonGanymede`;
+        visitedPlanets.push(moonGanymede);
+    }
+
+    else if (d4 <spaceship.size /2 + europa.size/2 && !visitedPlanets.includes(`moonEuropa`)){
+        state = `moonEuropa`;
+        visitedPlanets.push(moonEuropa);
+    }
+
+    else if (d5 <spaceship.size /2 + io.size/2 && !visitedPlanets.includes(`moonIo`)){
+        state = `moonIo`;
+        visitedPlanets.push(moonIo);
+    }
+    //Check if all the moons and or planets have been visited
+    if(visitedPlanets.length === 5){
+        state = `ending`;
+    }
+}
+
+function ending(){
+    background(0);
+    textSize(30);
+    fill(255, 255, 255);
+    textAlign(CENTER, CENTER);
+    text(`Simulation Ended. All planets and moons visited!`, width / 2, height / 2); 
 }
 
 function display(){
@@ -320,15 +403,40 @@ ellipse(io.x, io.y, io.size, io.size);
 
 //--------------------------------------
 }
-
 //Draw our spaceship here 
 function ourShip(){
     //Spaceship drawn here 
     fill(spaceship.fill.r,spaceship.fill.g,spaceship.fill.b);
     ellipse(spaceship.x, spaceship.y, spaceship.size);
+
+     // Display ellipses in the center for specific states
+        if (state === `planetJupiter`){
+            displayPlanet(jupiter);
+        }   
+
+        else if (state === `moonCallisto`){
+            displayPlanet(callisto);
+        }
+
+        else if (state ===`moonGanymede`){
+            displayPlanet(ganymede);
+        }
+
+        else if (state ===`moonEuropa`){
+            displayPlanet(europa);
+        }
+
+        else if (state ===`moonIo`){
+            displayPlanet(io);
+        }
+
     // trailLine();
 }
 
+function displayPlanet(planet) {
+    fill(planet.fill.r, planet.fill.g, planet.fill.b);
+    ellipse(width / 2, height / 2, planet.size, planet.size);
+}
 //Begins simulation
 function keyPressed(){
     if (state ===  `title`){
@@ -339,7 +447,6 @@ function keyPressed(){
         state = `simulation`;
     }
 }
-
 // //Trail, comet effect on SpaceShip
 // function trailLine(){
 //     push();
@@ -367,4 +474,4 @@ function keyPressed(){
 //         ellipse(posX,spaceship.y,spaceship.size);
 //         pop();
 //     }
-// }
+//
