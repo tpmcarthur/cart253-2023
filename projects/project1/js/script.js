@@ -1,14 +1,10 @@
 /**
- * Lost
  * Taylor McArthur
  * 
  * Visiting moons of Jupiter simulation
- * Title, yes
- * Simulation, started 
- * Ending, not done yet
  * Simulation begins when triggered by keyPressed
+ * visit eahc planet or moon to learn an educational fact
  */
-
 "use strict";
 
 //Spaceship, remember to 'draw' fill
@@ -22,14 +18,14 @@ let spaceship = {
     size: 20,
     speed: 5,
     fill: {
-        r:255,
-        g: 0,
-        b: 0,
+        r:0,
+        g: 255,
+        b: 255,
         a: 1
     } 
 };
 
-//Planets, is there a better way for me to write these out for cleaner code?
+//Planets, has to be a better way to store this than writing it all out
 let jupiter = {
     x: 450,
     y: 300,
@@ -45,6 +41,8 @@ let callisto = {
     x: 650,
     y: 500,
     size: 120,
+    angle: 0,
+    speed: 0.02,
     fill: {
         r: 160,
         g: 189,
@@ -89,6 +87,8 @@ let state = `title`; // The landing or loading page
 
 let visitedPlanets = []; // keeping track of all the planets visited
 
+let trailPositions = []; //Have the trail follow/move in the directions of the arrows
+
 //Description of preload
 function preload() {
 }
@@ -101,15 +101,16 @@ function setup() {
 //Description of draw
 function draw() {
     background(0);
-    // noCursor();
     noStroke();
 
     textFont('Alata');
 
+    //Beginning of simulation state, title info
     if (state === `title`){
         title();
     }
 
+    //the rest below are all different states when visiting the other moons or planets
     else if (state === `simulation`){
         simulation();
     }
@@ -138,6 +139,7 @@ function draw() {
         ending();
     }
 
+    //Movement/input being controlled by arrow keys instead of a mouse input
     //Horizontal Movement 
     //Left arrow being pressed
     if (keyIsDown(LEFT_ARROW)){
@@ -164,6 +166,7 @@ function draw() {
     else {
         spaceship.vy = 0;
     }
+
     //Am I writing this in the wrong spot or displaying the circle in the wrong spot?!
     spaceship.x += spaceship.vx;
     spaceship.y += spaceship.vy;
@@ -171,10 +174,17 @@ function draw() {
 
 function title(){
     push();
+    //Text1
     textSize(30);
-    fill(255,255,255);
     textAlign(CENTER,CENTER);
+    fill(255);
     text(`Explore the moons of Jupiter`, width/2,height/2)
+
+    //Text2
+    textSize(10);
+    textAlign(CENTER,CENTER);
+    fill(255);
+    text(`p r e s s  a n y   k e y   o r   a r r o w p a d   t o   b e g i n`, 400,350);
     pop();
     drawStarrySky();
 }
@@ -184,7 +194,7 @@ function simulation(){
     checkOverlap();
     display();
     ourShip();
-    // trailLine();
+    trailLine();
 }
 
 function planetJupiter(){
@@ -203,6 +213,7 @@ function planetJupiter(){
 
     //Shows spaceship in this state
     ourShip();
+    trailLine();
     pop();
     checkOffScreen();
 }
@@ -223,6 +234,7 @@ function moonCallisto(){
    
     //Shows spaceship in this state
     ourShip();
+    trailLine();
     pop();
     checkOffScreen();
 }
@@ -243,6 +255,7 @@ function moonGanymede(){
    
     //Shows spaceship in this state
     ourShip();
+    trailLine();
     pop();
     checkOffScreen();
 }
@@ -263,6 +276,7 @@ function moonEuropa(){
 
     //Shows spaceship in this state
     ourShip();
+    trailLine();
     pop();
     checkOffScreen();
 }
@@ -283,10 +297,12 @@ function moonIo(){
 
     //Shows spaceship in this state
     ourShip();
+    trailLine();
     pop();
     checkOffScreen();
 }
 
+//Have stars in the background..again
 function drawStarrySky(){
     fill(255); //white colour
     for (let i = 0; i <10; i++){
@@ -296,6 +312,7 @@ function drawStarrySky(){
     }
 }
 
+//Check to see if the spaceship has gone off the screen, if so return back to the title screen
 function checkOffScreen(){
     if(isOffScreen(spaceship)){
         //go to
@@ -341,7 +358,7 @@ function checkOverlap(){
         state = `moonIo`;
     } 
     
-    //Keeping check of all the planets/moons that have been visited
+    //Keeping check of all the planets/moons that have been visited for simulation to end
     if (d1 <spaceship.size /2 + jupiter.size/2 && !visitedPlanets.includes(`planetJupiter`)){
         state = `planetJupiter`;
         visitedPlanets.push(`planetJupiter`);
@@ -372,12 +389,13 @@ function checkOverlap(){
     }
 }
 
+//The end of the simulation message
 function ending(){
     background(0);
     textSize(30);
     fill(255, 255, 255);
     textAlign(CENTER, CENTER);
-    text(`Simulation Ended. All planets and moons visited!`, width / 2, height / 2); 
+    text(`Wow! All planets and moons visited`, width / 2, height / 2); 
 }
 
 function display(){
@@ -401,15 +419,15 @@ ellipse(europa.x, europa.y, europa.size, europa.size);
 fill(io.fill.r, io.fill.g, io.fill.b);
 ellipse(io.x, io.y, io.size, io.size);
 
-//--------------------------------------
 }
+
 //Draw our spaceship here 
 function ourShip(){
     //Spaceship drawn here 
     fill(spaceship.fill.r,spaceship.fill.g,spaceship.fill.b);
     ellipse(spaceship.x, spaceship.y, spaceship.size);
 
-     // Display ellipses in the center for specific states
+        // Display ellipses in the center for specific states
         if (state === `planetJupiter`){
             displayPlanet(jupiter);
         }   
@@ -429,14 +447,14 @@ function ourShip(){
         else if (state ===`moonIo`){
             displayPlanet(io);
         }
-
-    // trailLine();
 }
 
+//Planets displayed in the centre of the screen, info
 function displayPlanet(planet) {
     fill(planet.fill.r, planet.fill.g, planet.fill.b);
     ellipse(width / 2, height / 2, planet.size, planet.size);
 }
+
 //Begins simulation
 function keyPressed(){
     if (state ===  `title`){
@@ -447,31 +465,57 @@ function keyPressed(){
         state = `simulation`;
     }
 }
-// //Trail, comet effect on SpaceShip
-// function trailLine(){
-//     push();
-//     spaceship.x +1;
-//     fill(spaceship.fill.r,spaceship.fill.g,spaceship.fill.b);
-//     ellipse(spaceship.x,spaceship.y,spaceship.size);
-//     createDotTrail(spaceship.x);
-//     pop();
-// }
 
-// //Draw trail line with opacity 
-// function createDotTrail(posX){
-//     let trail = 30;
-//     let opacity = 255;
+//Trail, comet effect on SpaceShip
+function trailLine(){
+    push();
 
-//     for (let currentDot =0; currentDot <trail; currentDot++){
-//         push();
-//         posX -=3;
-//         opacity -= 10
+    //Make comet glow
+    blendMode(ADD);
 
-//         let trailColor = color(spaceship.fill.r,spaceship.fill.g,spaceship.fill.b);
-//         trailColor.setAlpha(opacity);
-//         fill(trailColor);
+    //current position of trail?
+    trailPositions.push({ x: spaceship.x, y: spaceship.y })
 
-//         ellipse(posX,spaceship.y,spaceship.size);
-//         pop();
-//     }
-//
+    for (let i = 0; i < trailPositions.length; i++){
+        let alpha = map (i, 0, trailPositions.length, 255, 0);
+        let size = map (i, 0, trailPositions.length, 1, spaceship.size);
+        fill(spaceship.fill.r, spaceship.fill.g, spaceship.fill.b, alpha);
+        
+        //Blur for glow effect
+        noStroke();
+        for (let j = 0; j < 5; j++){
+            ellipse(trailPositions[i].x, trailPositions[i].y, size + j * 2, size + j * 2);
+        }
+    }
+
+    //limit the amount of the length of the tail
+    if(trailPositions.length > 20){
+        trailPositions.shift();
+    }
+    //Reset the Blend Mode
+    blendMode(BLEND);
+    pop();
+}
+
+//Draw trail line with opacity 
+function createDotTrail(posX){
+    let trail = 20;
+    let opacity = 255;
+
+    for (let currentDot =0; currentDot <trail; currentDot++){
+        push();
+        posX -= 3;
+        opacity -= 10;
+
+        let trailColor = color(spaceship.fill.r,spaceship.fill.g,spaceship.fill.b);
+        trailColor.setAlpha(opacity);
+        fill(trailColor);
+
+        let size = map(currentDot, 0, trail, spaceship.size, 1);
+        noStroke();
+        for (let j = 0; j <5; j++){
+            ellipse(posX, spaceship.y, size + j * 2, size + j *2);
+        }
+        pop();
+    }
+}
