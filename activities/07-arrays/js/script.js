@@ -18,7 +18,8 @@ let food1;
 let food2;
 let food3;
 let food4;
-
+let food5;
+let food6;
 
 //PreLoad
 function preload() {
@@ -28,12 +29,14 @@ function preload() {
 
 //Setup
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    createCanvas(600, 600);
 
-    food1 = createFood(150, 300);
-    food2 = createFood(250, 300);
-    food3 = createFood(350, 300);
-    food4 = createFood(450, 300);
+    food1 = createFood(50, 300);
+    food2 = createFood(150, 300);
+    food3 = createFood(250, 300);
+    food4 = createFood(350, 300);
+    food5 = createFood(450, 300);
+    food6 = createFood(550, 300);
 }
 
 
@@ -49,13 +52,17 @@ function draw() {
     checkFood(food2);
     checkFood(food3);
     checkFood(food4);
-
+    checkFood(food5);
+    checkFood(food6);
+    ;
     //display user and foods
     displayUser();
     displayFood(food1);
     displayFood(food2);
     displayFood(food3);
     displayFood(food4);
+    displayFood(food5);
+    displayFood(food6);
 }
 
 //Sets the user position to the mouse position
