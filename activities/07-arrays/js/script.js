@@ -14,21 +14,10 @@ let user = {
     size: 100
 };
 
-//First food object 
-let food1 = {
-    x: 250,
-    y: 300,
-    size: 50,
-    eaten: false //track whether the user has eaten the food
-};
-
-//Second food object 
-let food2 = {
-    x: 350,
-    y: 300,
-    size: 50,
-    eaten: false //track whether the user has eaten the food
-};
+let food1;
+let food2;
+let food3;
+let food4;
 
 
 //PreLoad
@@ -41,6 +30,10 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
+    food1 = createFood(150, 300);
+    food2 = createFood(250, 300);
+    food3 = createFood(350, 300);
+    food4 = createFood(450, 300);
 }
 
 
@@ -52,13 +45,17 @@ function draw() {
     moveUser();
 
     //Check whether the user has eaten either the food
-    checkFood1();
-    checkFood2();
+    checkFood(food1);
+    checkFood(food2);
+    checkFood(food3);
+    checkFood(food4);
 
     //display user and foods
     displayUser();
-    displayFood1();
-    displayFood2();
+    displayFood(food1);
+    displayFood(food2);
+    displayFood(food3);
+    displayFood(food4);
 }
 
 //Sets the user position to the mouse position
@@ -67,25 +64,36 @@ function moveUser() {
     user.y = mouseY;
 }
 
-//Checks if the user overlaps food1 object and eats it if so 
-function checkFood1() {
-    //Check for overlap the food 1 object and eats it if so
-    if (!food1.eaten) {
-        let d = dist(user.x, user.y, food1.x, food1.y);
-        if (d < user.size / 2 + food1.size / 2) {
-            food1.eaten = true;
+function checkFood(food) {
+    if (!food.eaten) {
+        let d = dist(user.x, user.y, food.x, food.y);
+        if (d < user.size / 2 + food.size / 2) {
+            food.eaten = true;
         }
     }
 }
 
-//Same as above, but for food 2
-function checkFood2() {
-    if (!food2.eaten) {
-        let d = dist(user.x, user.y, food2.x, food2.y);
-        if (d < user.size / 2 + food2.size / 2) {
-            food2.eaten = true;
-        }
+//Display the food provided as a parameter
+function displayFood(food) {
+    //check if the food is still available to be eaten
+    if (!food.eaten) {
+        //display the food as its position with its size
+        push();
+        fill(255, 100, 100);
+        ellipse(food.x, food.y, food.size);
+        pop();
     }
+
+}
+
+function createFood(x, y) {
+    let food = {
+        x: x,
+        y: y,
+        size: 50,
+        eaten: false
+    };
+    return food;
 }
 
 //draw user as a circle
@@ -94,24 +102,4 @@ function displayUser() {
     fill(255);
     ellipse(user.x, user.y, user.size);
     pop();
-}
-
-//draw food as circle
-function displayFood1() {
-    //Dont want to display food1 if it's been eaten 
-    if (!food1.eaten) {
-        push();
-        fill(255, 100, 100);
-        ellipse(food1.x, food1.y, food1.size);
-        pop();
-    }
-}
-
-//Same as above but for food2
-function displayFood2() {
-    if (!food2.eaten) {
-        push();
-        fill(255, 100, 100);
-        ellipse(food2.x, food2.y, food2.size);
-    }
 }
