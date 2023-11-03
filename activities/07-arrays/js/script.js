@@ -8,12 +8,7 @@
 
 "use strict";
 
-//Our fish 
-let fish1;
-let fish2;
-let fish3;
-let fish4;
-
+let school = []; //Create an empty array and assign it to the school variable
 //PreLoad
 function preload() {
 
@@ -24,11 +19,12 @@ function preload() {
 function setup() {
     createCanvas(600, 600);
 
-    //Create four fish, positioned randomly
-    fish1 = createFish(random(0, width), random(0, height));
-    fish2 = createFish(random(0, width), random(0, height));
-    fish3 = createFish(random(0, width), random(0, height));
-    fish4 = createFish(random(0, width), random(0, height));
+    //Create four fish, positioned randomly, storing each one in four successive
+    // spaces in our array by using the addresses `0` through `3`
+    school[0] = createFish(random(0, width), random(0, height));
+    school[1] = createFish(random(0, width), random(0, height));
+    school[2] = createFish(random(0, width), random(0, height));
+    school[3] = createFish(random(0, width), random(0, height));
 
 }
 
@@ -50,15 +46,31 @@ function createFish(x, y) {
 function draw() {
     background(0);
 
-    moveFish(fish1);
-    moveFish(fish2);
-    moveFish(fish3);
-    moveFish(fish4);
+    // moveFish(school[0]);
+    // moveFish(school[1]);
+    // moveFish(school[2]);
+    // moveFish(school[3]);
 
-    displayFish(fish1);
-    displayFish(fish2);
-    displayFish(fish3);
-    displayFish(fish4);
+    // displayFish(school[0]);
+    // displayFish(school[1]);
+    // displayFish(school[2]);
+    // displayFish(school[3]);
+
+    // Use a for loop to count from 0 up to 3
+    // and move the fish at that index in the schools arrays each time -- this doesn't make sense to me, but the top part does, check in with TA
+    for (let i = 0; i < 4; i++) {
+        // use i as the index to get the current fish to move
+        // the first time i will be 0 and the second time 1, then 2, then 3
+        let fish = school[i];
+        // move the fish
+        moveFish(fish);
+    }
+
+    // same for displaying
+    for (let i = 0; i < 4; i++) {
+        let fish = school[i];
+        displayFish(fish);
+    }
 }
 
 // moveFish(fish)
