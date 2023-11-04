@@ -15,21 +15,20 @@
 // separated by commas
 // As here, we can put each element on a separate line for clarity 
 
-let fortunes = [
-    `It's not looking great.`,
-    `You will trip over an apple today.`,
-    `Beware of over-friendly cats.`,
-    `Bank error in your favour, collect $200`,
-    `Start your Korean skincare regime`,
-    `You will feel better than 20 years ago`,
-    `Ryan Renyolds will call you on your birthday`,
-    `Happiness is just around the corner`,
-    `You will make it look easy today`,
-    `Your future is cloudy`
+let soliloquy = [
+    `To be, or not to be`,
+    `That is the question.`,
+    `Whether 'tis nobler in the mind`,
+    `To suffer the slings and arrows`,
+    `Of outrageous fortune`,
+    `Or to take arms`,
+    `Against a sea of sorrows`,
+    `And by opposing end them.`
 ];
 
-// We need a variable to store the chosen fortune so we can display it in a draw
-let chosenFortune = `I am looking into your soul...`;
+// We need a variable to store the current line we want to display
+// It should start at ZERO because that's the first index in the array
+let currentLine = 0;
 
 //PreLoad
 function preload() {
@@ -47,15 +46,23 @@ function setup() {
 //Draw
 function draw() {
     background(0);
-    text(chosenFortune, width / 2, height / 2);
+    // get the element in the array at the CURRENT index (starts at 0 and goes up)
+    let dialog = soliloquy[currentLine];
+    // display the string in that element on the canvas
+    text(dialog, width / 2, height / 2);
 }
 
 // mousePressed() chooses a random fortune from the fortunes array 
 function mousePressed() {
-    // by passing the fortunesd array as an argument to random() we get back a random element in the array 
-    // (one of the fortune strings) in which we can then store the chosenFortune var for displaying
-    chosenFortune = random(fortunes);
-
+    // go to the next line in the soliloquy
+    currentLine = currentLine + 1;
+    // check if we've reached the length of the array
+    // If we have, we've gone past the end because we started counting at 0 
+    // The length of our array is 8, but the final element is at index 7
+    if (currentLine === soliloquy.length) {
+        // if we've gone past the end, go back to the last real element 
+        currentLine = soliloquy.length - 1;
+    }
 }
 
 
