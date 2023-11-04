@@ -10,13 +10,14 @@
 "use strict";
 // An array to store our images
 let images = [];
+
 // A variable to store the image we want to display
 let displayImage;
 
 
 // preload() loads 10 images
 function preload() {
-    images[0] = loadImage(`assets/images/clown-0.png`);
+    images[0] = loadImage(`assets/images/clown-0.png`); console.log("clown img load");
     images[1] = loadImage(`assets/images/clown-1.png`);
     images[2] = loadImage(`assets/images/clown-2.png`);
     images[3] = loadImage(`assets/images/clown-3.png`);
@@ -33,6 +34,7 @@ function setup() {
     createCanvas(600, 600);
     // Choose an image to display randomly from the array
     displayImage = random(images);
+    console.log("should be a random one");
 }
 
 // draw() displays the randomly chosen image
@@ -41,6 +43,7 @@ function draw() {
     // Display the randomly selected image
     imageMode(CENTER);
     image(displayImage, width / 2, height / 2);
+    console.log("image should be here!");
 }
 
 
