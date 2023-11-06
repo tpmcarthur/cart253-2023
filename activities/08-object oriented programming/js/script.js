@@ -72,10 +72,32 @@ function createFlower() {
     return flower;
 }
 
+// displayFlower(flower)
+// Displays the provided flower on the canvas
+function displayFlower(flower) {
+    push();
+    // draw a line for the stem 
+    strokeWeight(flower.stemThickness);
+    stroke(flower.stemColor.r, flower.stemColor.g, flower.stemColor.b);
+    line(flower.x, flower.y, flower.x, flower.y + flower.stemLength);
+    // draw a circle with a heavy outline for the flower
+    strokeWeight(flower.petalThickness);
+    fill(flower.centreColor.r, flower.centreColor.g, flower.centreColor.b);
+    stroke(flower.petalColor.r, flower.petalColor.g, flower.petalColor.b);
+    ellipse(flower.x, flower.y, flower.size);
+    pop();
+}
 
-/**
- * Description of draw()
-*/
+// draw()
+// Displays our flowers
 function draw() {
+    // display the grass
+    background(garden.grassColor.r, garden.grassColor.b, garden.grassColor.g);
+
+    // loop through all the flowers in the array and display them
+    for (let i = 0; i < garden.flowers.length; i++) {
+        let flower = garden.flowers[i];
+        displayFlower(flower);
+    }
 
 }
