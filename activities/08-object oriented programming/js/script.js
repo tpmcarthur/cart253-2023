@@ -34,7 +34,7 @@ function setup() {
     // create our flowers by counting up the number of the flowers
     for (let i = 0; i < garden.numFlowers; i++) {
         // create a new flower
-        let flower = createFlower();
+        let flower = new Flower();
         // add the flower to the array of flowers
         garden.flowers.push(flower);
     }
