@@ -1,8 +1,8 @@
 /**
- * Object Oriented Programming
+ * Constructors with Parameters
  * Taylor McArthur
  * 
- * Learning OOP
+ * 8.2 | Constructors with Parameters
  */
 
 "use strict";
@@ -29,8 +29,18 @@ function setup() {
 
     // Create our flowers by counting up to the number of the flowers
     for (let i = 0; i < garden.numFlowers; i++) {
+        let x = random(0, width);
+        let y = random(0, height);
+        let size = random(50, 80);
+        let stemLength = random(50, 100);
+        let petalColor = {
+            r: random(100, 255),
+            g: random(100, 255),
+            b: random(100, 255)
+        };
+
         // NEW! Create a new flower
-        let flower = new Flower();
+        let flower = new Flower(x, y, size, stemLength, petalColor);
         // Add the flower to the array of flowers
         garden.flowers.push(flower);
         console.log("garden flowers array");
