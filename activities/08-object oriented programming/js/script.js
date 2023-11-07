@@ -19,9 +19,6 @@ let garden = {
     }
 };
 
-/**
- * Description of preload
-*/
 function preload() {
 
 }
@@ -31,11 +28,11 @@ function preload() {
 function setup() {
     createCanvas(600, 600);
 
-    // create our flowers by counting up the number of the flowers
+    // Create our flowers by counting up to the number of the flowers
     for (let i = 0; i < garden.numFlowers; i++) {
-        // create a new flower
+        // NEW! Create a new flower
         let flower = new Flower();
-        // add the flower to the array of flowers
+        // Add the flower to the array of flowers
         garden.flowers.push(flower);
     }
 }
@@ -43,16 +40,16 @@ function setup() {
 // createFlower()
 // Creates a new JavaScript Object describing a flower and returns it
 function createFlower() {
-    // create our object 
+    // Create our object
     let flower = {
-        // position and size information
+        // Position and size information
         x: random(0, width),
         y: random(0, height),
         size: 50,
         stemLength: 75,
         stemThickness: 10,
         petalThickness: 10,
-        // color information
+        // Color information
         stemColor: {
             r: 50,
             g: 150,
@@ -76,11 +73,11 @@ function createFlower() {
 // Displays the provided flower on the canvas
 function displayFlower(flower) {
     push();
-    // draw a line for the stem 
+    // Draw a line for the stem
     strokeWeight(flower.stemThickness);
     stroke(flower.stemColor.r, flower.stemColor.g, flower.stemColor.b);
     line(flower.x, flower.y, flower.x, flower.y + flower.stemLength);
-    // draw a circle with a heavy outline for the flower
+    // Draw a circle with a heavy outline for the flower
     strokeWeight(flower.petalThickness);
     fill(flower.centreColor.r, flower.centreColor.g, flower.centreColor.b);
     stroke(flower.petalColor.r, flower.petalColor.g, flower.petalColor.b);
@@ -91,13 +88,12 @@ function displayFlower(flower) {
 // draw()
 // Displays our flowers
 function draw() {
-    // display the grass
-    background(garden.grassColor.r, garden.grassColor.b, garden.grassColor.g);
+    // Display the grass
+    background(garden.grassColor.r, garden.grassColor.g, garden.grassColor.b);
 
-    // loop through all the flowers in the array and display them
+    // Loop through all the flowers in the array and display them
     for (let i = 0; i < garden.flowers.length; i++) {
         let flower = garden.flowers[i];
-        displayFlower(flower);
+        flower.display(); // NEW! Call the display() method for this flower
     }
-
 }

@@ -1,26 +1,27 @@
+"use strict";
+
 class Flower {
 
+    // The constructor() sets up a flower's properties
     constructor() {
-        // we will define what a flower is like in here 
-        this.x = random(0, width);
-        this.y = random(0, height);
+        // Position and size information
+        this.x = x;
+        this.y = y;
         this.size = 50;
         this.stemLength = 75;
         this.stemThickness = 10;
         this.petalThickness = 10;
-        // color information
+        // Color information
         this.stemColor = {
             r: 50,
             g: 150,
             b: 50
         };
-
         this.petalColor = {
             r: 200,
             g: 50,
             b: 50
         };
-
         this.centreColor = {
             r: 50,
             g: 0,
@@ -32,7 +33,7 @@ class Flower {
     // Displays the flower on the canvas
     display() {
         push();
-        // set the stroke weight for the petals and the stem
+        // Set the stroke weight for the petals and the stem
         strokeWeight(this.stemThickness);
         // Draw a line for the stem
         stroke(this.stemColor.r, this.stemColor.g, this.stemColor.b);
