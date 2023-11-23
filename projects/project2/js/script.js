@@ -6,7 +6,8 @@
  */
 
 "use strict";
-let stars = [1000];
+
+let state = `title`; //Informing the beginning of the simulation
 
 //Description of preload
 function preload() {
@@ -16,63 +17,45 @@ function preload() {
 
 //Description of setup
 function setup() {
-    createCanvas(windowWidth, windowHeight, WEBGL);
-
-    //Set up for the Bloom Effect 
-    bloom = new Bloom();
-    bloom.setBlur(0.8);
-
-    //Creating point cloud
-    for (let i = 0; i < 1000; i++) {
-        stars.push(createVector(random(-width, width), random(-height, height), random(-500, 500)));
-    };
+    createCanvas(windowWidth, 700);
+    colorMode(HSB, 360, 100, 100, 100);
 
     //Heartbeat sound
     //heartbeatSound.play();
-
 }
 
 //Description of draw()
 function draw() {
     background(0);
+    noStroke();
 
-    // Apply bloom effect here
-    bloom.drawBloom(() => {
-        //Draw the 3D point cloud
-        drawPointCloud();
-    });
-
-    // Update the heartbeat according to brightness
-    // let amp = getAmplitude();
-    // heartbeatSound.setVolume(amp);
-
-    // Emissions on brightness based on the heartbeat 
-    // let brightness = map(amp, 0, 1, 0, 255);
-    // ambientLight(brightness);
-
-    // rotate around point cloud
-    rotateSketch();
-}
-
-// Creating the point cloud
-function drawPointCloud() {
-    // draw point cloud using points
-    strokeWeight(2);
-    stroke(255, 200);
-    beginShape(POINTS);
-    for (let stars of stars) {
-        vertex(stars.x, stars.y, stars.z);
+    if (state === `title`) {
+        title();
     }
-    endShape();
+
+    else if (state === `simulation`) {
+        simulation();
+    }
+
 }
 
-function rotateSketch() {
-    // Rotate the sketch based on mouse drag
-    rotateY(frameCount * 0.01);
+function title() {
+    push();
+    textSize(30);
+    fill(211, 211, 211);
+    textAlign(CENTER, CENTER);
+    text(`Eternal Love`, width / 2, height / 2);
+    pop();
 }
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
+function simulation() {
+    new Star();
+}
+
+function mousePressed() {
+    if (state === `title`) {
+        state = `simulation`;
+    }
 }
 
 // function getAmplitude() {
