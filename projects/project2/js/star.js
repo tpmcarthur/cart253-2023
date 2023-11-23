@@ -2,10 +2,10 @@
 
 class Star {
 
-    constructor() {
-        this.x = 300;
-        this.y = 300;
-        this.size = 20;
+    constructor(posX, posY) {
+        this.x = posX;
+        this.y = posY;
+        this.size = 10;
         this.fill = {
             h: 176,
             s: 100,
@@ -16,7 +16,7 @@ class Star {
         this.display();
     }
 
-    //displays the this
+    //displays the the stars with a emissive material
     display() {
         fill(this.fill.h, this.fill.s, this.fill.b, this.fill.a);
 

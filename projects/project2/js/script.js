@@ -17,7 +17,7 @@ function preload() {
 
 //Description of setup
 function setup() {
-    createCanvas(windowWidth, 700);
+    createCanvas(800, 700);
     colorMode(HSB, 360, 100, 100, 100);
 
     //Heartbeat sound
@@ -49,7 +49,50 @@ function title() {
 }
 
 function simulation() {
-    new Star();
+    // Pleione
+    let x = 200;
+    let y = 450;
+    new Star(x, y);
+
+    // Atlas
+    let x2 = 195;
+    let y2 = 400;
+    new Star(x2, y2);
+
+    // Alcyone
+    let x3 = 310;
+    let y3 = 440;
+    new Star(x3, y3);
+
+    // Merope
+    let x4 = 400;
+    let y4 = 480;
+    new Star(x4, y4);
+
+    // Electra 
+    let x5 = 500;
+    let y5 = 430;
+    new Star(x5, y5);
+
+    // Celaeno 
+    let x6 = 500;
+    let y6 = 350;
+    new Star(x6, y6);
+
+    //Taygeta 
+    let x7 = 490;
+    let y7 = 300;
+    new Star(x7, y7);
+
+    // Asterope
+    let x8 = 390;
+    let y8 = 270;
+    new Star(x8, y8);
+
+    // Maia 
+    let x9 = 290;
+    let y9 = 250;
+    new Star(x9, y9);
 }
 
 function mousePressed() {
