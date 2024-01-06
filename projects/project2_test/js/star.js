@@ -1,4 +1,4 @@
-// The thist of creating the this objects
+// ocreating star object
 
 class Star {
 
@@ -23,6 +23,7 @@ class Star {
         drawingContext.shadowBlur = 10;
         drawingContext.shadowColor = color(207, 100, 100);
 
+        //Blur effect for glow around each star, multiple times
         ellipse(this.x, this.y, this.size, this.size);
         ellipse(this.x, this.y, this.size, this.size);
         ellipse(this.x, this.y, this.size, this.size);
@@ -30,9 +31,5 @@ class Star {
         ellipse(this.x, this.y, this.size, this.size);
 
     }
-
-
-
-
 
 }

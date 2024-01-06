@@ -7,22 +7,28 @@
 
 "use strict";
 let font;
-
 let state = `title`; //The beginning of the simulation
+
+let titleColorA, titleColorB; //defining variables for two different colors
+let titleMix = 0; // mixing the two colors together
+let titleEasing = 0.05; // 1.o to 0 
 
 //Description of preload
 function preload() {
     font = loadFont('assets/Nexa Bold.otf');
+    mySound = loadSound('./music.mp3');
     //heartbeatSound = loadSound('');
 
 }
 
 //Description of setup
 function setup() {
-    createCanvas(800, 700);
+    createCanvas(windowWidth, windowHeight);
     colorMode(HSB, 360, 100, 100, 100);
     textFont(font);
 
+    titleColorA = color('#ffeda0'); // warm colour 1
+    titleColorB = color('#ffa585'); // warm color 2 
     //Heartbeat sound
     //heartbeatSound.play();
 }
@@ -32,8 +38,12 @@ function draw() {
     background(0);
     noStroke();
 
+    let titleMixTarget = map(mouseX, 0, width, 0.0, 1.0);
+    titleMix = titleMix + ((titleMixTarget - titleMix) * titleEasing);
+    let titleEasedColor = lerpColor(titleColorA, titleColorB, titleMix);
+
     if (state === `title`) {
-        title();
+        title(titleEasedColor);
     }
 
     else if (state === `simulation`) {
@@ -42,58 +52,58 @@ function draw() {
 
 }
 
-function title() {
+function title(titleColor) {
     push();
-    textSize(30);
-    fill(211, 211, 211);
+    textSize(40);
+    fill(titleColor);
     textAlign(CENTER, CENTER);
-    text(`eternal love`, width / 2, height / 2);
+    text(`E T E R N A L   L O V E`, width / 2, height / 2);
     pop();
 }
 
 function simulation() {
     // Pleione
-    let x = 200;
+    let x = 600;
     let y = 450;
     new Star(x, y);
 
     // Atlas
-    let x2 = 195;
+    let x2 = 595;
     let y2 = 400;
     new Star(x2, y2);
 
     // Alcyone
-    let x3 = 310;
+    let x3 = 710;
     let y3 = 440;
     new Star(x3, y3);
 
     // Merope
-    let x4 = 400;
+    let x4 = 800;
     let y4 = 480;
     new Star(x4, y4);
 
     // Electra 
-    let x5 = 500;
+    let x5 = 900;
     let y5 = 430;
     new Star(x5, y5);
 
     // Celaeno 
-    let x6 = 500;
+    let x6 = 900;
     let y6 = 350;
     new Star(x6, y6);
 
     //Taygeta 
-    let x7 = 490;
+    let x7 = 890;
     let y7 = 300;
     new Star(x7, y7);
 
     // Asterope
-    let x8 = 390;
+    let x8 = 790;
     let y8 = 270;
     new Star(x8, y8);
 
     // Maia 
-    let x9 = 360;
+    let x9 = 760;
     let y9 = 340;
     new Star(x9, y9);
 }
