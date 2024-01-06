@@ -67,16 +67,17 @@ function draw() {
 
     // Display the user and the foods
     displayUser();
-    displayFood1();
-    displayFood2();
-    displayFood3();
+    displayFood(food1);
+    displayFood(food2);
+    displayFood(food3);
+
 }
 
 function moveUser() {
     user.x = mouseX;
     user.y = mouseY;
-    console.log('move userrrrr');
 }
+
 // checks if the user overlaps the food1 object and eats it if so 
 function checkFood1() {
     // we only want to check for an overlap if the food1 hasnt been eaten yet 
@@ -114,38 +115,13 @@ function displayUser() {
     ellipse(user.x, user.y, user.size);
     pop();
 }
-
-// draw food1 as a circle
-function displayFood1() {
-    // dont want to display food if it's eaten 
-    if (!food1.eaten) {
+function displayFood(food) {
+    if (!food.eaten) {
         push();
         fill(255, 100, 100);
-        ellipse(food1.x, food1.y, food1.size);
+        ellipse(food.x, food.y, food.size);
         pop();
     }
 }
 
-// same as above but for food2
-function displayFood2() {
-    if (!food2.eaten) {
-        push();
-        fill(255, 100, 100);
-        ellipse(food2.x, food2.y, food2.size);
-        pop();
 
-    }
-
-}
-
-// same as above but for food2
-function displayFood3() {
-    if (!food3.eaten) {
-        push();
-        fill(255, 100, 100);
-        ellipse(food3.x, food3.y, food3.size);
-        pop();
-
-    }
-
-}
