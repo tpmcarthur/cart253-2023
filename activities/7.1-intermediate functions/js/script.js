@@ -16,30 +16,13 @@ let user = {
     size: 100
 };
 
-//  First food object 
+//  Foods
+let food1;
+let food2;
+let food3;
+let food4;
 
-let food1 = {
-    x: 250,
-    y: 300,
-    size: 50,
-    eaten: false
-};
 
-// second food object 
-
-let food2 = {
-    x: 350,
-    y: 300,
-    size: 50,
-    alive: false
-};
-
-let food3 = {
-    x: 450,
-    y: 300,
-    size: 50,
-    alive: false
-};
 
 
 function preload() {
@@ -51,6 +34,22 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
+    food1 = createFood(250, windowHeight / 2);
+    food2 = createFood(350, windowHeight / 2);
+    food3 = createFood(450, windowHeight / 2);
+    food4 = createFood(550, windowHeight / 2);
+}
+
+function createFood(x, y) {
+    let food = {
+        x: x,
+        y: y,
+        size: 50,
+        alive: false
+    };
+
+    return food;
+
 }
 
 
@@ -61,15 +60,17 @@ function draw() {
     moveUser();
 
     // check whethere the user has eaten the food or not
-    checkFood1();
-    checkFood2();
-    checkFood3();
+    checkFood(food1);
+    checkFood(food2);
+    checkFood(food3);
+    checkFood(food4);
 
     // Display the user and the foods
     displayUser();
     displayFood(food1);
     displayFood(food2);
     displayFood(food3);
+    displayFood(food4);
 
 }
 
@@ -79,31 +80,12 @@ function moveUser() {
 }
 
 // checks if the user overlaps the food1 object and eats it if so 
-function checkFood1() {
+function checkFood(food) {
     // we only want to check for an overlap if the food1 hasnt been eaten yet 
-    if (!food1.eaten) {
-        let d = dist(user.x, user.y, food1.x, food1.y);
-        if (d < user.size / 2 + food1.size / 2) {
-            food1.eaten = true;
-        }
-    }
-}
-
-// The same as above, but for food 2
-function checkFood2() {
-    if (!food2.eaten) {
-        let d = dist(user.x, user.y, food2.x, food2.y);
-        if (d < user.size / 2 + food2.size / 2) {
-            food2.eaten = true;
-        }
-    }
-}
-
-function checkFood3() {
-    if (!food3.eaten) {
-        let d = dist(user.x, user.y, food3.x, food3.y);
-        if (d < user.size / 2 + food3.size / 2) {
-            food3.eaten = true;
+    if (!food.eaten) {
+        let d = dist(user.x, user.y, food.x, food.y);
+        if (d < user.size / 2 + food.size / 2) {
+            food.eaten = true;
         }
     }
 }
