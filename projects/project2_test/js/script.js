@@ -8,20 +8,31 @@
 "use strict";
 
 let font;
+//Title Variables
 let state = `title`; //The beginning of the simulation
 let titleColorA, titleColorB; //defining variables for two different colors
 let titleMix = 0; // mixing the two colors together
 let titleEasing = 0.05; // 1.o to 0 
 
-let stars = [];
+
+//Stars Variables 
+let stars = []; //Create an empty box for stars to go into 
+
+let starsNum = 9; // create a star array 
+let starSizes = []; // Varied star sizes
+
+//Create a random star size between the two values 
+for (let i = 0; i < starsNum; i++) {
+    let size = Math.random() * (25 - 10) + 10;
+    starSizes.push(size);
+}
 
 // let song;
 // let amplitude;
 
-
-
 //Description of preload
 function preload() {
+    // fix spaces in font, github
     font = loadFont('assets/Nexa Bold.otf');
 
 }
@@ -41,8 +52,8 @@ function setup() {
     // amplitude = new p5.Amplitude();
     // amplitude.setInput(song);
 
-    //Calling simulation here so it doesn't have to run through draw every single time
-    simulation();
+    // //Calling simulation here so it doesn't have to run through draw every single time
+    // simulation();
 }
 
 
@@ -58,7 +69,7 @@ function draw() {
 
     let titleEasedColor = lerpColor(titleColorA, titleColorB, titleMix);
 
-    // Creating states for the beginning of the experience
+    // Creating different states 
     if (state === `title`) {
         title(titleEasedColor);
     }
@@ -68,71 +79,56 @@ function draw() {
     }
 
     else if (state === 'simulation') {
-        for (let i = 0; i < stars.length; i++) {
-            stars[i].checkClick();
-        }
-    }
-
-    // The draw stars after title
-    for (let i = 0; i < stars.length; i++) {
-        stars[i].display();
+        simulation();
     }
 }
 
+//pleiades cluster created here, main centre piece 
 function simulation() {
     // Pleione
     let x = 600;
     let y = 450;
-    let size1 = random(10, 25);
-    stars.push(new Star(x, y, size1));
+    stars.push(new Star(x, y, starSizes[0]));
 
     // Atlas
     let x2 = 595;
     let y2 = 400;
-    let size2 = random(10, 25);
-    stars.push(new Star(x2, y2, size2));
+    stars.push(new Star(x2, y2, starSizes[1]));
 
     // Alcyone
     let x3 = 710;
     let y3 = 440;
-    let size3 = random(10, 25);
-    stars.push(new Star(x3, y3, size3));
+    stars.push(new Star(x3, y3, starSizes[2]));
 
     // Merope
     let x4 = 800;
     let y4 = 480;
-    let size4 = random(10, 25);
-    stars.push(new Star(x4, y4, size4));
+    stars.push(new Star(x4, y4, starSizes[3]));
 
     // Electra 
     let x5 = 900;
     let y5 = 430;
-    let size5 = random(10, 25);
-    stars.push(new Star(x5, y5, size5));
+    stars.push(new Star(x5, y5, starSizes[4]));
 
     // Celaeno 
     let x6 = 900;
     let y6 = 350;
-    let size6 = random(10, 25);
-    stars.push(new Star(x6, y6, size6));
+    stars.push(new Star(x6, y6, starSizes[5]));
 
     //Taygeta 
     let x7 = 890;
     let y7 = 300;
-    let size7 = random(10, 25);
-    stars.push(new Star(x7, y7, size7));
+    stars.push(new Star(x7, y7, starSizes[6]));
 
     // Asterope
     let x8 = 790;
     let y8 = 270;
-    let size8 = random(10, 25);
-    stars.push(new Star(x8, y8, size8));
+    stars.push(new Star(x8, y8, starSizes[7]));
 
     // Maia 
     let x9 = 760;
     let y9 = 340;
-    let size9 = random(10, 25);
-    stars.push(new Star(x9, y9, size9));
+    stars.push(new Star(x9, y9, starSizes[8]));
 }
 
 function title(titleColor) {
@@ -145,7 +141,6 @@ function title(titleColor) {
 }
 
 function writeUp() {
-    console.log('is this state being executed');
     push();
     textSize(40);
     fill(255);
@@ -153,9 +148,16 @@ function writeUp() {
     text(`hahahahhahahah`, width / 2, height / 2);
     pop();
 }
-function mousePressed() {
+
+function mouseClicked() {
     if (state === `title`) {
         state = `simulation`;
+    }
+
+    else if (state === `simulation`) {
+        for (let i = 0; i < stars.length; i++) {
+            stars[i].checkClick();
+        }
     }
 }
 
