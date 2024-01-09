@@ -16,9 +16,7 @@ I wanted to recreate globular clusters, a main one in the middle representing hi
 
 -Audio output. Save the generated as an audio file. WAV or MP3
 
-
 I wanted to have a point cloud or point particle system encapsulating a chosen constellation in the Milky Way. I wanted it to have some 3 dimensionality meaning you can click and drag to rotate around the point cloud (mouseOnClick()). I also wanted to explore more with colours. I came across some articles that mentioned using a CIE XYZ colour model. That focuses more on HSL (hue, saturation, brightness and alpha). I wanted the entire piece to be glowing using a bloom effect. Lastly I want to incorporate the sound of his heartbeat and have the brightness of the emissive points to be audio reactive. 
-
 
 // Sources Below 
 
