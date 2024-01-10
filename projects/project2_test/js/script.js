@@ -14,10 +14,8 @@ let titleColorA, titleColorB; //defining variables for two different colors
 let titleMix = 0; // mixing the two colors together
 let titleEasing = 0.05; // 1.o to 0 
 
-
 //Stars Variables 
 let stars = []; //Create an empty box for stars to go into 
-
 let starsNum = 9; // create a star array 
 let starSizes = []; // Varied star sizes
 
@@ -34,7 +32,6 @@ for (let i = 0; i < starsNum; i++) {
 function preload() {
     // fix spaces in font, github
     font = loadFont('assets/Nexa Bold.otf');
-
 }
 
 //Description of setup
@@ -52,15 +49,13 @@ function setup() {
     // amplitude = new p5.Amplitude();
     // amplitude.setInput(song);
 
-    // //Calling simulation here so it doesn't have to run through draw every single time
-    // simulation();
+
 }
 
 
 //Description of draw()
 function draw() {
-    background(0);
-    noStroke();
+    background(253, 92, 4.9); //dark purple color
 
     // Gradient lerp for title 
     let titleMixTarget = map(mouseX, 0, width, 0.0, 1.0);
@@ -83,8 +78,27 @@ function draw() {
     }
 }
 
+function noiseLine(x, y) {
+    let c = 100;
+    let px = x;
+    let py = y;
+
+    for (let i = 0; i < c; i++) {
+        let scl = 0.0015;
+        let angle = noise(x * scl, y * scl, i * 0.00001) * 10;
+        let w = map(i, 0, c - 1, 1, 0);
+        strokeWeight(w);
+        line(x, y, px, py);
+        px = x;
+        py = y;
+        x += cos(angle) * 8;
+        y += sin(angle) * 8;
+    }
+}
+
 //pleiades cluster created here, main centre piece 
 function simulation() {
+    noStroke();
     // Pleione
     let x = 600;
     let y = 450;
@@ -137,6 +151,20 @@ function title(titleColor) {
     fill(titleColor);
     textAlign(CENTER, CENTER);
     text(`E T E R N A L   L O V E`, width / 2, height / 2);
+
+    //Lines test
+    noFill();
+    for (let i = 0; i < 100; i++) {
+        drawingContext.shadowBlur = 15;
+        drawingContext.shadowColor = color(60, 30, 100);
+
+        stroke(60, 30, 100);
+
+        noiseLine(random(-0.2, 1.1) * width, random(-0.2, 1.1) * height);
+
+        drawingContext.shadowBlur = 0;
+        drawingContext.shadowColor = color(0, 0, 0, 0);
+    }
     pop();
 }
 
@@ -145,7 +173,7 @@ function writeUp() {
     textSize(40);
     fill(255);
     textAlign(CENTER, CENTER);
-    text(`hahahahhahahah`, width / 2, height / 2);
+    text(`hey there, we've been trying to reach you`, width / 2, height / 2);
     pop();
 }
 
