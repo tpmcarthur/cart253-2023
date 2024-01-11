@@ -14,16 +14,13 @@ class Star {
             b: 80,
             a: 99
         }
-        //  Amplitude for size variation
-        // this.amplitude = amplitude;
-        // this.minSize = size;
-        // this.maxSize = size + 10;
 
         // display stars
         this.display();
 
         // Check to see if the star(s) have been clicked
         this.clicked = false;
+
         // timeout ID
         this.timeoutID = null;
 
@@ -52,12 +49,13 @@ class Star {
 
     //displays the the stars with a emissive material
     display() {
+        noStroke();
         fill(this.fill.h, this.fill.s, this.fill.b, this.fill.a);
 
         // let level = this.amplitude.getLevel();
         // let newSize = map(level, 0, 1, this.minSize, this.maxSize);
 
-        drawingContext.shadowBlur = 10;
+        drawingContext.shadowBlur = 15;
         drawingContext.shadowColor = color(207, 100, 100);
 
         //Blur effect for glow around each star, multiple times in a for loop 
