@@ -1,13 +1,11 @@
-// ocreating star object
-
-// = assignment, put objects inside variables
+//Creating star object
 
 class Star {
-
+    // Constructor to create a new star object
     constructor(posX, posY, size) {
-        this.x = posX;
-        this.y = posY;
-        this.size = size;
+        this.x = posX; // X pos
+        this.y = posY; // Y pos
+        this.size = size; //Size
         this.fill = {
             h: 176,
             s: 100,
@@ -17,50 +15,28 @@ class Star {
 
         // display stars
         this.display();
-
-        // Check to see if the star(s) have been clicked
-        this.clicked = false;
-
-        // timeout ID
-        this.timeoutID = null;
-
-        // check if the star is clicked
-        this.clickedStar = false;
     }
 
-    checkClick() {
-        // calculate distance between mouse position and star position 
-        let d = dist(mouseX, mouseY, this.x, this.y);
-
-        // check of mouse is within the boundaries of the star 
-        if (d < this.size / 2) {
-            // If clicked, play the sound
-            if (!this.clickedStar) {
-                this.clickedStar = true;
-                state = 'writeUp';
-
-                this.clicked = true;
-            }
-            else {
-                this.clickedStar = false;
-            }
-        }
+    // calculate distance between mouse position and star position 
+    isClicked() {
+        let d = dist(mouseX, mouseY, this.x, this.y);//Distamce from mouse to star
+        return (d < this.size / 2); //Returns true IF mouse is within radius
     }
 
-    //displays the the stars with a emissive material
+    //displays the the stars with a emissive material, audio reactive (amplitude)
     display() {
+        let level = amplitude.getLevel(); // current amp level
+        let newSize = map(level, 0, 1, this.size * 0.8, this.size * 2); //calculate size based off amplitutde
+
         noStroke();
         fill(this.fill.h, this.fill.s, this.fill.b, this.fill.a);
 
-        // let level = this.amplitude.getLevel();
-        // let newSize = map(level, 0, 1, this.minSize, this.maxSize);
-
-        drawingContext.shadowBlur = 15;
-        drawingContext.shadowColor = color(207, 100, 100);
+        drawingContext.shadowBlur = 15; //Blur amount 
+        drawingContext.shadowColor = color(207, 100, 100); //blur color
 
         //Blur effect for glow around each star, multiple times in a for loop 
         for (let i = 0; i < 5; i++) {
-            ellipse(this.x, this.y, this.size, this.size);
+            ellipse(this.x, this.y, newSize, newSize);
         }
     }
     // any methods of responding to this specfic event should be in here like mousePressed or mouseClicked. p5 events
