@@ -59,7 +59,7 @@ let virgoStars = {
 
 //Description of preload
 function preload() {
-    font = loadFont('assets/NotoSans-Black.TTF'); // unicode font
+    font = loadFont('assets/notoSansBlack.ttf'); // unicode font
     heartbeat = loadSound('assets/sounds/heartbeat.mp3') //stock heartbeat SFX
 }
 
